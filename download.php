@@ -1,0 +1,14 @@
+<?php
+   $folder = 'files';
+   if(isset($_GET['file']) && file_exists("{$folder}/".$_GET['file'])){
+      $file = $_GET['file'];
+      $type = filetype("{$folder}/{$file}");
+      $size = filesize("{$folder}/{$file}");
+      header("Content-Description: File Transfer");
+      header("Content-Type:{$type}"); 
+      header("Content-Length:{$size}");
+      header("Content-Disposition: attachment; filename=$file"); 
+      readfile("{$folder}/{$file}");
+   exit;
+   }
+?>
